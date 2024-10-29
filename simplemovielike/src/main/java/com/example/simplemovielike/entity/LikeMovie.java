@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Like {
+public class LikeMovie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
