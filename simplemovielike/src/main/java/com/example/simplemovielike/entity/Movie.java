@@ -24,4 +24,5 @@ public class Movie {
     Long likeCounter;
     Long ratingCounter;
     int rating;
+
 }
