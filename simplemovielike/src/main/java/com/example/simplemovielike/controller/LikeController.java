@@ -10,7 +10,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +26,20 @@ public class LikeController {
         Long userId = requestBody.get("userId");
         Long movieId = requestBody.get("movieId");
         LikeMovie likeMovie = likeService.userLikeMovie(userId, movieId);
+        
+        return new ResponseEntity<>(likeMovie, HttpStatus.OK);
+    }
+
+    @PostMapping("/unlike")
+    public ResponseEntity<LikeMovie> userUnlikeMovie(@RequestBody Map<String, Long> requestBody) throws Exception {
+        Long userId = requestBody.get("userId");
+        Long movieId = requestBody.get("movieId");
+        LikeMovie likeMovie = likeService.userUnlikeMovie(userId, movieId);
+
+        if (likeMovie.equals(new LikeMovie()))
+        {
+            return new ResponseEntity<>(likeMovie, HttpStatus.NOT_FOUND);
+        }
         
         return new ResponseEntity<>(likeMovie, HttpStatus.OK);
     }
